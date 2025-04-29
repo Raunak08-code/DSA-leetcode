@@ -9,52 +9,30 @@ vector<vector<int> > pascal(int numrows){
 
     vector<vector<int> > v2;
 
-    for(int i=1; i<=nr; i++){
-        vector<int> a(i);
-        v2.push_back(a);
-    }
-
     //generate
     for(int i=0; i<nr; i++){
+        vector<int> a(i+1);
+        v2.push_back(a);
         for(int j=0; j<=i; j++){
-            if(j==0 || j==i) v2[i][j]=1;
+            if(j==0 || j==i) v2[i][j]=1;  // side condition
             else{
-                v2[i][j] = v2[i-1][j-1]+ v2[i-1][j];
+                v2[i][j] = v2[i-1][j-1]+ v2[i-1][j];  //main algo
             }
         }
     }
     return v2;
 
 }
-//     int nr;
-//     for(int i=0; i<nr; i++){
-//         v2[i][0]=1;
-//     }
-
-//     for(int i=0; i<nr; i++){
-//         for(int j=i+1; j<nr; j++){
-//             v2[i][j]=1;
-//         }
-//     }
-
-//     for(int i=0; i<nr; i++){
-//         for(int j=0; j<nr; j++){
-//             v2[i][j] = v2[i-1][j-1]+ v2[i-1][j];
-//         }
-//     }
-// }
 
 int main(){
-    int nr=5;
-
-    vector<vector<int> > v2= pascal(nr);
+    vector<vector<int> > v2= pascal(5);
     // outpur
+    int nr=v2.size();
     for(int i=0; i<nr; i++){
         for(int j=0; j<=i; j++){
             cout<<v2[i][j]<<" ";
         }
         cout<<endl;
     }
-    return 1;
-    
+    return 1;    
 }
